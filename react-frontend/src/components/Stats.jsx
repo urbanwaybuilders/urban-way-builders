@@ -1,10 +1,10 @@
 const statistics = [
     {
-        number: "25+",
+        number: "50+",
         label: "Projects Completed"
     },
     {
-        number: "2+",
+        number: "6+",
         label: "Years Experience"
     },
     {

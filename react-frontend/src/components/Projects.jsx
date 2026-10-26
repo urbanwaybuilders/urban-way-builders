@@ -1,5 +1,5 @@
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 const projects = [
@@ -37,25 +37,47 @@ const projects = [
     }
 ];
 
+function getVisibleCount() {
+    if (window.innerWidth <= 600) return 1;
+    if (window.innerWidth <= 900) return 2;
+    return 3;
+}
+
 function Projects() {
     const [startIndex, setStartIndex] = useState(0);
+    const [visibleCount, setVisibleCount] = useState(getVisibleCount);
 
-const visibleProjects = projects.slice(
-    startIndex,
-    startIndex + 3
-);
+    useEffect(() => {
+        function handleResize() {
+            setVisibleCount(getVisibleCount());
+        }
 
-function nextProjects() {
-    setStartIndex((current) =>
-        Math.min(current + 1, Math.max(0, projects.length - 3))
+        window.addEventListener("resize", handleResize);
+
+        return () => {
+            window.removeEventListener("resize", handleResize);
+        };
+    }, []);
+
+    // Keep the current index valid when the screen size changes.
+    const maxIndex = Math.max(0, projects.length - visibleCount);
+
+    useEffect(() => {
+        setStartIndex((current) => Math.min(current, maxIndex));
+    }, [maxIndex]);
+
+    const visibleProjects = projects.slice(
+        startIndex,
+        startIndex + visibleCount
     );
-}
 
-function previousProjects() {
-    setStartIndex((current) =>
-        Math.max(current - 1, 0)
-    );
-}
+    function nextProjects() {
+        setStartIndex((current) => Math.min(current + 1, maxIndex));
+    }
+
+    function previousProjects() {
+        setStartIndex((current) => Math.max(current - 1, 0));
+    }
 
     return (
         <section className="projects" id="projects">
@@ -67,57 +89,56 @@ function previousProjects() {
             </div>
 
             <div className="projects-slider-wrapper">
+                <button
+                    type="button"
+                    className="slider-arrow slider-arrow-left"
+                    onClick={previousProjects}
+                    disabled={startIndex === 0}
+                    aria-label="Previous projects"
+                >
+                    &#10094;
+                </button>
 
-    <button
-    type="button"
-    className="slider-arrow slider-arrow-left"
-    onClick={previousProjects}
-    disabled={startIndex === 0}
-    aria-label="Previous projects"
->
-    &#10094;
-</button>
+                <div className="project-container">
+                    {visibleProjects.map((project) => (
+                        <div className="project-card" key={project.id}>
+                            <div className="project-image">
+                                <img
+                                    src={project.image}
+                                    alt={project.name}
+                                />
+                            </div>
 
-    <div className="project-container">
-        {visibleProjects.map((project) => (
-            <div className="project-card" key={project.id}>
+                            <div className="project-info">
+                                <h3>{project.name}</h3>
+                                <p>📍 {project.location}</p>
+                                <p>🏗️ {project.type}</p>
 
-                <div className="project-image">
-                    <img
-                        src={project.image}
-                        alt={project.name}
-                    />
+                                <Link
+                                    to={`/projects/${project.id}`}
+                                    className="view-project-btn"
+                                >
+                                    View Project
+                                </Link>
+                            </div>
+                        </div>
+                    ))}
                 </div>
 
-                <div className="project-info">
-                    <h3>{project.name}</h3>
-                    <p>📍 {project.location}</p>
-                    <p>🏗️ {project.type}</p>
-
-                    <Link
-                        to={`/projects/${project.id}`}
-                        className="view-project-btn"
-                    >
-                        View Project
-                    </Link>
-                </div>
-
+                <button
+                    type="button"
+                    className="slider-arrow slider-arrow-right"
+                    onClick={nextProjects}
+                    disabled={startIndex >= maxIndex}
+                    aria-label="Next projects"
+                >
+                    &#10095;
+                </button>
             </div>
-        ))}
-    </div>
 
-    <button
-    type="button"
-    className="slider-arrow slider-arrow-right"
-    onClick={nextProjects}
-    disabled={startIndex >= Math.max(0, projects.length - 3)}
-    aria-label="Next projects"
->
-    &#10095;
-</button>
-
-</div>
-
+            <p className="project-counter">
+                Showing {startIndex + 1}–{Math.min(startIndex + visibleCount, projects.length)} of {projects.length} projects
+            </p>
         </section>
     );
 }

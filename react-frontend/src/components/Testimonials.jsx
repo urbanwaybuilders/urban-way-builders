@@ -1,105 +1,235 @@
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-const testimonials = [
-    {
-        id: 1,
-        name: "Tarunkumar",
-        role: "Residential Project",
-        message:
-            "The construction process was handled professionally and the team maintained good communication throughout the project."
-    },
-    {
-        id: 2,
-        name: "Customer Name",
-        role: "Commercial Project",
-        message:
-            "We appreciated the attention to quality and the overall approach to completing our construction project."
-    },
-    {
-        id: 3,
-        name: "Customer Name",
-        role: "Residential Project",
-        message:
-            "The team understood our requirements and worked with us throughout the construction process."
-    },
-    {
-        id: 4,
-        name: "Another Customer",
-        role: "Residential Project",
-        message:
-            "The team kept us informed throughout our construction project."
-    }
-];
+const SCRIPT_URL =
+  "https://script.google.com/macros/s/AKfycbwMCWQXaKqMQMC3tN2sPrNVPu_4MMlGju3MypERQ0hkAVYqJ9IO6JHd8R7DVr9RFOFb/exec";
+
+function getVisibleCount() {
+  if (window.innerWidth <= 600) return 1;
+  if (window.innerWidth <= 900) return 2;
+  return 3;
+}
 
 function Testimonials() {
-    const [startIndex, setStartIndex] = useState(0);
+  const [testimonials, setTestimonials] = useState([]);
+  const [startIndex, setStartIndex] = useState(0);
+  const [visibleCount, setVisibleCount] = useState(getVisibleCount);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
 
-    const visibleTestimonials = testimonials.slice(
-        startIndex,
-        startIndex + 3
-    );
+  // Load approved reviews initially and refresh every 30 seconds.
+  useEffect(() => {
+    let active = true;
+    let isFetching = false;
 
-    const lastStartIndex = Math.max(0, testimonials.length - 3);
+    async function loadReviews() {
+      // Prevent overlapping requests.
+      if (isFetching) return;
+      isFetching = true;
 
-    function nextTestimonials() {
-        setStartIndex((current) =>
-            Math.min(current + 1, lastStartIndex)
-        );
+      try {
+        const response = await fetch(SCRIPT_URL);
+
+        if (!response.ok) {
+          throw new Error("Could not load reviews");
+        }
+
+        const data = await response.json();
+
+        if (!data.success) {
+          throw new Error("Review API returned an error");
+        }
+
+        if (active) {
+          const approvedReviews = (data.reviews || []).filter(
+            (review) =>
+              review.name &&
+              review.review &&
+              Number.isInteger(Number(review.rating)) &&
+              Number(review.rating) >= 1 &&
+              Number(review.rating) <= 5
+          );
+
+          setTestimonials(approvedReviews);
+          setError(false);
+        }
+      } catch (err) {
+        console.error("Error loading customer reviews:", err);
+
+        if (active) {
+          // Keep previously loaded reviews visible if a refresh fails.
+          setError(true);
+        }
+      } finally {
+        isFetching = false;
+
+        if (active) {
+          setLoading(false);
+        }
+      }
     }
 
-    function previousTestimonials() {
-        setStartIndex((current) =>
-            Math.max(current - 1, 0)
-        );
+    // Fetch reviews as soon as the component loads.
+    loadReviews();
+
+    // Fetch again every 30 seconds.
+    const refreshInterval = setInterval(() => {
+      loadReviews();
+    }, 30000);
+
+    // Stop refreshing when the component unmounts.
+    return () => {
+      active = false;
+      clearInterval(refreshInterval);
+    };
+  }, []);
+
+  // Adjust the number of visible reviews for different screen sizes.
+  useEffect(() => {
+    function handleResize() {
+      setVisibleCount(getVisibleCount());
     }
 
-    return (
-        <section className="testimonials">
-            <div className="section-title">
-                <h2>What Our Customers Say</h2>
-                <p>Customer experiences and feedback.</p>
-            </div>
+    window.addEventListener("resize", handleResize);
 
-            <div className="testimonials-slider-wrapper">
-                <button
-                    type="button"
-                    className="testimonial-arrow testimonial-arrow-left"
-                    onClick={previousTestimonials}
-                    disabled={startIndex === 0}
-                    aria-label="Previous testimonials"
-                >
-                    &#10094;
-                </button>
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
-                <div className="testimonial-container">
-                    {visibleTestimonials.map((testimonial) => (
-                        <div
-                            className="testimonial-card"
-                            key={testimonial.id}
-                        >
-                            <p className="testimonial-message">
-                                "{testimonial.message}"
-                            </p>
+  // Keep the current slider position within the available reviews.
+  const lastStartIndex = Math.max(
+    0,
+    testimonials.length - visibleCount
+  );
 
-                            <h3>{testimonial.name}</h3>
-                            <span>{testimonial.role}</span>
-                        </div>
-                    ))}
-                </div>
-
-                <button
-                    type="button"
-                    className="testimonial-arrow testimonial-arrow-right"
-                    onClick={nextTestimonials}
-                    disabled={startIndex >= lastStartIndex}
-                    aria-label="Next testimonials"
-                >
-                    &#10095;
-                </button>
-            </div>
-        </section>
+  useEffect(() => {
+    setStartIndex((current) =>
+      Math.min(current, lastStartIndex)
     );
+  }, [lastStartIndex]);
+
+  const visibleTestimonials = testimonials.slice(
+    startIndex,
+    startIndex + visibleCount
+  );
+
+  function previousReviews() {
+    setStartIndex((current) => Math.max(0, current - 1));
+  }
+
+  function nextReviews() {
+    setStartIndex((current) =>
+      Math.min(lastStartIndex, current + 1)
+    );
+  }
+
+  return (
+    <section className="testimonials" id="testimonials">
+      <div className="testimonials-background"></div>
+
+      <div className="testimonials-content">
+        <div className="section-title">
+          <h2>What Our Customers Say</h2>
+          <p>Real experiences from our valued customers</p>
+        </div>
+
+        {loading && (
+          <p
+            style={{
+              color: "#ffffff",
+              textAlign: "center",
+            }}
+          >
+            Loading customer reviews...
+          </p>
+        )}
+
+        {!loading && error && testimonials.length === 0 && (
+          <p
+            style={{
+              color: "#ffffff",
+              textAlign: "center",
+            }}
+          >
+            Unable to load reviews right now. Please try again later.
+          </p>
+        )}
+
+        {!loading &&
+          !error &&
+          testimonials.length === 0 && (
+            <p
+              style={{
+                color: "#ffffff",
+                textAlign: "center",
+              }}
+            >
+              No approved reviews yet. Be the first to share your
+              experience!
+            </p>
+          )}
+
+        {!loading && testimonials.length > 0 && (
+          <div className="testimonials-slider-wrapper">
+            <button
+              type="button"
+              className="testimonial-arrow testimonial-arrow-left"
+              onClick={previousReviews}
+              disabled={startIndex === 0}
+              aria-label="Previous reviews"
+            >
+              &#10094;
+            </button>
+
+            <div className="testimonial-container">
+              {visibleTestimonials.map((item, index) => (
+                <article
+                  className="testimonial-card"
+                  key={`${item.date || ""}-${item.name}-${index}`}
+                >
+                  <div
+                    className="testimonial-stars"
+                    aria-label={`${Number(item.rating)} out of 5 stars`}
+                  >
+                    {"★".repeat(Number(item.rating))}
+                    {"☆".repeat(5 - Number(item.rating))}
+                  </div>
+
+                  <p className="testimonial-message">
+                    “{item.review}”
+                  </p>
+
+                  <h3>{item.name}</h3>
+
+                  <span>Verified Customer Review</span>
+                </article>
+              ))}
+            </div>
+
+            <button
+              type="button"
+              className="testimonial-arrow testimonial-arrow-right"
+              onClick={nextReviews}
+              disabled={startIndex >= lastStartIndex}
+              aria-label="Next reviews"
+            >
+              &#10095;
+            </button>
+
+            <p className="testimonial-counter">
+              Showing {startIndex + 1}–
+              {Math.min(
+                startIndex + visibleCount,
+                testimonials.length
+              )}{" "}
+              of {testimonials.length} reviews
+            </p>
+          </div>
+        )}
+      </div>
+    </section>
+  );
 }
 
 export default Testimonials;
