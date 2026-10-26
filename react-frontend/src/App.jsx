@@ -1,6 +1,12 @@
+
 import { useEffect } from "react";
-import { useLocation } from "react-router-dom";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import {
+    BrowserRouter,
+    Routes,
+    Route,
+    Navigate,
+    useLocation,
+} from "react-router-dom";
 
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
@@ -14,6 +20,39 @@ import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 
 import ProjectDetails from "./pages/ProjectDetails";
+
+// Automatically scroll to a section when a URL contains a hash
+function ScrollToSection() {
+    const location = useLocation();
+
+    useEffect(() => {
+        if (!location.hash) return;
+
+        const sectionId = location.hash.substring(1);
+        let attempts = 0;
+        let timer;
+
+        function scrollToTarget() {
+            const section = document.getElementById(sectionId);
+
+            if (section) {
+                section.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start",
+                });
+            } else if (attempts < 30) {
+                attempts++;
+                timer = window.setTimeout(scrollToTarget, 100);
+            }
+        }
+
+        timer = window.setTimeout(scrollToTarget, 200);
+
+        return () => window.clearTimeout(timer);
+    }, [location.pathname, location.hash]);
+
+    return null;
+}
 
 function Home() {
     return (
@@ -35,6 +74,8 @@ function Home() {
 function App() {
     return (
         <BrowserRouter>
+            <ScrollToSection />
+
             <Routes>
                 <Route path="/" element={<Home />} />
 
