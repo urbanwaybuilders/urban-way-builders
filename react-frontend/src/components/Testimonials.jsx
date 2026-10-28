@@ -17,14 +17,13 @@ function Testimonials() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
-  // Load approved reviews initially and refresh every 30 seconds.
   useEffect(() => {
     let active = true;
     let isFetching = false;
 
     async function loadReviews() {
-      // Prevent overlapping requests.
       if (isFetching) return;
+
       isFetching = true;
 
       try {
@@ -43,8 +42,10 @@ function Testimonials() {
         if (active) {
           const approvedReviews = (data.reviews || []).filter(
             (review) =>
-              review.name &&
-              review.review &&
+              typeof review.name === "string" &&
+              review.name.trim() &&
+              typeof review.review === "string" &&
+              review.review.trim() &&
               Number.isInteger(Number(review.rating)) &&
               Number(review.rating) >= 1 &&
               Number(review.rating) <= 5
@@ -57,7 +58,6 @@ function Testimonials() {
         console.error("Error loading customer reviews:", err);
 
         if (active) {
-          // Keep previously loaded reviews visible if a refresh fails.
           setError(true);
         }
       } finally {
@@ -69,22 +69,16 @@ function Testimonials() {
       }
     }
 
-    // Fetch reviews as soon as the component loads.
     loadReviews();
 
-    // Fetch again every 30 seconds.
-    const refreshInterval = setInterval(() => {
-      loadReviews();
-    }, 30000);
+    const refreshInterval = setInterval(loadReviews, 30000);
 
-    // Stop refreshing when the component unmounts.
     return () => {
       active = false;
       clearInterval(refreshInterval);
     };
   }, []);
 
-  // Adjust the number of visible reviews for different screen sizes.
   useEffect(() => {
     function handleResize() {
       setVisibleCount(getVisibleCount());
@@ -97,7 +91,6 @@ function Testimonials() {
     };
   }, []);
 
-  // Keep the current slider position within the available reviews.
   const lastStartIndex = Math.max(
     0,
     testimonials.length - visibleCount
@@ -125,50 +118,48 @@ function Testimonials() {
   }
 
   return (
-    <section className="testimonials" id="testimonials">
-      <div className="testimonials-background"></div>
+    <section
+      className="testimonials"
+      id="testimonials"
+      aria-labelledby="testimonials-heading"
+    >
+      <div
+        className="testimonials-background"
+        aria-hidden="true"
+      />
 
       <div className="testimonials-content">
         <div className="section-title">
-          <h2>What Our Customers Say</h2>
-          <p>Real experiences from our valued customers</p>
+          <h2 id="testimonials-heading">
+            Customer Reviews
+          </h2>
+
+          <p>
+            Read feedback shared by customers about their
+            experience with Urban Way Builders.
+          </p>
         </div>
 
         {loading && (
-          <p
-            style={{
-              color: "#ffffff",
-              textAlign: "center",
-            }}
-          >
+          <p role="status" aria-live="polite">
             Loading customer reviews...
           </p>
         )}
 
         {!loading && error && testimonials.length === 0 && (
-          <p
-            style={{
-              color: "#ffffff",
-              textAlign: "center",
-            }}
-          >
-            Unable to load reviews right now. Please try again later.
+          <p role="status">
+            Customer reviews are temporarily unavailable.
+            Please try again later.
           </p>
         )}
 
-        {!loading &&
-          !error &&
-          testimonials.length === 0 && (
-            <p
-              style={{
-                color: "#ffffff",
-                textAlign: "center",
-              }}
-            >
-              No approved reviews yet. Be the first to share your
-              experience!
-            </p>
-          )}
+        {!loading && !error && testimonials.length === 0 && (
+          <p>
+            No approved reviews yet. If you have worked with
+            Urban Way Builders, you can share your experience
+            using our review form.
+          </p>
+        )}
 
         {!loading && testimonials.length > 0 && (
           <div className="testimonials-slider-wrapper">
@@ -177,7 +168,7 @@ function Testimonials() {
               className="testimonial-arrow testimonial-arrow-left"
               onClick={previousReviews}
               disabled={startIndex === 0}
-              aria-label="Previous reviews"
+              aria-label="Show previous customer reviews"
             >
               &#10094;
             </button>
@@ -190,6 +181,7 @@ function Testimonials() {
                 >
                   <div
                     className="testimonial-stars"
+                    role="img"
                     aria-label={`${Number(item.rating)} out of 5 stars`}
                   >
                     {"★".repeat(Number(item.rating))}
@@ -202,7 +194,7 @@ function Testimonials() {
 
                   <h3>{item.name}</h3>
 
-                  <span>Verified Customer Review</span>
+                  <span>Customer Review</span>
                 </article>
               ))}
             </div>
@@ -212,12 +204,15 @@ function Testimonials() {
               className="testimonial-arrow testimonial-arrow-right"
               onClick={nextReviews}
               disabled={startIndex >= lastStartIndex}
-              aria-label="Next reviews"
+              aria-label="Show next customer reviews"
             >
               &#10095;
             </button>
 
-            <p className="testimonial-counter">
+            <p
+              className="testimonial-counter"
+              aria-live="polite"
+            >
               Showing {startIndex + 1}–
               {Math.min(
                 startIndex + visibleCount,

@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
@@ -9,7 +8,7 @@ const projects = [
         location: "Bangalore",
         type: "Residential",
         status: "Completed",
-        image: "/projects/villa.jpg"
+        image: "/projects/villa.jpg",
     },
     {
         id: "commercial",
@@ -17,7 +16,7 @@ const projects = [
         location: "Bangalore",
         type: "Commercial",
         status: "Completed",
-        image: "/projects/commercial.jpg"
+        image: "/projects/commercial.jpg",
     },
     {
         id: "residential",
@@ -25,7 +24,7 @@ const projects = [
         location: "Bangalore",
         type: "Residential",
         status: "Ongoing",
-        image: "/projects/residential.jpg"
+        image: "/projects/residential.jpg",
     },
     {
         id: "luxury-villa",
@@ -33,8 +32,8 @@ const projects = [
         location: "Mysore",
         type: "Residential",
         status: "Completed",
-        image: "/projects/luxury-villa.jpg"
-    }
+        image: "/projects/luxury-villa.jpg",
+    },
 ];
 
 function getVisibleCount() {
@@ -82,9 +81,11 @@ function Projects() {
     return (
         <section className="projects" id="projects">
             <div className="section-title">
-                <h2>Our Projects</h2>
+                <h2>Our Construction Projects</h2>
                 <p>
-                    Explore our completed and ongoing construction projects.
+                    Explore residential and commercial construction
+                    projects, including completed work and ongoing
+                    developments by Urban Way Builders.
                 </p>
             </div>
 
@@ -105,14 +106,17 @@ function Projects() {
                             <div className="project-image">
                                 <img
                                     src={project.image}
-                                    alt={project.name}
+                                    alt={`${project.name} construction project in ${project.location}`}
+                                    loading="lazy"
                                 />
                             </div>
 
                             <div className="project-info">
                                 <h3>{project.name}</h3>
+
                                 <p>📍 {project.location}</p>
                                 <p>🏗️ {project.type}</p>
+                                <p>Project Status: {project.status}</p>
 
                                 <Link
                                     to={`/projects/${project.id}`}
@@ -137,7 +141,9 @@ function Projects() {
             </div>
 
             <p className="project-counter">
-                Showing {startIndex + 1}–{Math.min(startIndex + visibleCount, projects.length)} of {projects.length} projects
+                Showing {startIndex + 1}–
+                {Math.min(startIndex + visibleCount, projects.length)} of{" "}
+                {projects.length} projects
             </p>
         </section>
     );

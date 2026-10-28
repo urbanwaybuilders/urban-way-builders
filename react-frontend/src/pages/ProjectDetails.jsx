@@ -1,6 +1,5 @@
-
-import { useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 
 const projects = [
     {
@@ -62,6 +61,49 @@ function ProjectDetails() {
     const [currentImage, setCurrentImage] = useState(0);
 
     const project = projects.find((item) => item.id === id);
+
+    // Update SEO metadata for the selected project.
+    useEffect(() => {
+        if (!project) {
+            document.title = "Project Not Found | Urban Way Builders";
+
+            let descriptionMeta = document.querySelector(
+                'meta[name="description"]'
+            );
+
+            if (!descriptionMeta) {
+                descriptionMeta = document.createElement("meta");
+                descriptionMeta.name = "description";
+                document.head.appendChild(descriptionMeta);
+            }
+
+            descriptionMeta.setAttribute(
+                "content",
+                "The requested construction project could not be found. Explore projects by Urban Way Builders."
+            );
+
+            return;
+        }
+
+        document.title = `${project.name} in ${project.location} | Urban Way Builders`;
+
+        let descriptionMeta = document.querySelector(
+            'meta[name="description"]'
+        );
+
+        if (!descriptionMeta) {
+            descriptionMeta = document.createElement("meta");
+            descriptionMeta.name = "description";
+            document.head.appendChild(descriptionMeta);
+        }
+
+        descriptionMeta.setAttribute(
+            "content",
+            `${project.description} View details of this ${project.type.toLowerCase()} project in ${project.location} by Urban Way Builders.`
+        );
+
+        setCurrentImage(0);
+    }, [project]);
 
     // Navigate to the homepage and scroll to the requested section.
     function goToSection(sectionId) {

@@ -12,10 +12,12 @@ function Footer() {
                 <div className="footer-container">
 
                     <div className="footer-brand">
-                        <h2>URBAN WAY BUILDER'S</h2>
+                        <h2>Urban Way Builders</h2>
+
                         <p className="footer-tagline">
-                            Building Dreams. Creating Better Tomorrow.
+                            Building Dreams. Creating a Better Tomorrow.
                         </p>
+
                         <p>
                             Quality construction, thoughtful design,
                             and reliable project management.
@@ -23,19 +25,27 @@ function Footer() {
                     </div>
 
                     <div className="footer-contact">
-                        <h3>Contact Us</h3>
+                        <h3>Contact Urban Way Builders</h3>
+
                         <p>
                             <strong>Address:</strong>
                             <span>Vijayapura, Karnataka, India</span>
                         </p>
+
                         <p>
                             <strong>Phone:</strong>
-                            <span>+91 7483 087 008</span>
+                            <a href="tel:+917483087008">
+                                +91 7483 087 008
+                            </a>
                         </p>
+
                         <p>
                             <strong>Email:</strong>
-                            <span>urbanwaybuilders@gmail.com</span>
+                            <a href="mailto:urbanwaybuilders@gmail.com">
+                                urbanwaybuilders@gmail.com
+                            </a>
                         </p>
+
                         <p>
                             <strong>Hours:</strong>
                             <span>Mon–Sat, 9 AM–6 PM</span>
@@ -44,14 +54,17 @@ function Footer() {
 
                     <div className="footer-reviews">
                         <h3>Customer Reviews</h3>
+
                         <p>
                             Have you worked with us? Share your experience
                             and help us improve.
                         </p>
+
                         <button
                             type="button"
                             className="footer-review-link"
                             onClick={() => setIsReviewOpen(true)}
+                            aria-haspopup="dialog"
                         >
                             Write a Review →
                         </button>

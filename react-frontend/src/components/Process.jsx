@@ -4,30 +4,30 @@ import { useEffect, useState } from "react";
 const processSteps = [
     {
         number: "01",
-        title: "Consultation",
+        title: "Initial Construction Consultation",
         description:
-            "We understand your requirements, budget and construction goals.",
+            "We discuss your construction requirements, budget, preferred location and project goals.",
         image: "/images/consultation.png",
     },
     {
         number: "02",
-        title: "Planning",
+        title: "Construction Planning",
         description:
-            "We plan the project and coordinate the required construction activities.",
+            "We plan the project scope and coordinate the design, materials and construction activities.",
         image: "/images/planning.png",
     },
     {
         number: "03",
-        title: "Construction",
+        title: "Building Construction",
         description:
-            "Our team executes the project with focus on quality and workmanship.",
+            "Our team focuses on quality workmanship, careful execution and progress throughout construction.",
         image: "/images/construction.png",
     },
     {
         number: "04",
-        title: "Completion",
+        title: "Project Completion",
         description:
-            "We complete the project and review the work with the customer.",
+            "We review the completed work with you and address the agreed project requirements.",
         image: "/images/completion.png",
     },
 ];
@@ -71,15 +71,27 @@ function Process() {
     );
 
     return (
-        <section className="process" id="process">
+        <section
+            className="process"
+            id="process"
+            aria-labelledby="process-heading"
+        >
             <div className="section-title">
-                <h2>How We Build Your Dream</h2>
+                <h2 id="process-heading">
+                    Our Construction Process
+                </h2>
+
                 <p>
-                    A simple and transparent approach to construction.
+                    Discover how Urban Way Builders approaches
+                    residential and commercial construction, from
+                    initial consultation to project completion.
                 </p>
             </div>
 
-            <div className="process-slider-wrapper">
+            <div
+                className="process-slider-wrapper"
+                aria-label="Construction process steps"
+            >
                 <button
                     type="button"
                     className="process-slider-arrow process-slider-arrow-left"
@@ -89,7 +101,7 @@ function Process() {
                         )
                     }
                     disabled={startIndex === 0}
-                    aria-label="Previous construction steps"
+                    aria-label="Show previous construction step"
                 >
                     &#10094;
                 </button>
@@ -125,13 +137,13 @@ function Process() {
                         )
                     }
                     disabled={startIndex >= lastStartIndex}
-                    aria-label="Next construction steps"
+                    aria-label="Show next construction step"
                 >
                     &#10095;
                 </button>
             </div>
 
-            <p className="process-counter">
+            <p className="process-counter" aria-live="polite">
                 Showing {startIndex + 1}–
                 {Math.min(
                     startIndex + visibleCount,
@@ -144,4 +156,3 @@ function Process() {
 }
 
 export default Process;
-

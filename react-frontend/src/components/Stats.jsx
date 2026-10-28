@@ -1,3 +1,4 @@
+
 const statistics = [
     {
         number: "50+",
@@ -5,7 +6,7 @@ const statistics = [
     },
     {
         number: "6+",
-        label: "Years Experience"
+        label: "Years of Experience"
     },
     {
         number: "100+",
@@ -18,26 +19,19 @@ const statistics = [
 ];
 
 function Stats() {
-
     return (
-        <section className="stats">
-
+        <section
+            className="stats"
+            aria-label="Urban Way Builders business statistics"
+        >
             <div className="stats-container">
-
-                {statistics.map((stat, index) => (
-
-                    <div className="stat-card" key={index}>
-
+                {statistics.map((stat) => (
+                    <div className="stat-card" key={stat.label}>
                         <h2>{stat.number}</h2>
-
                         <p>{stat.label}</p>
-
                     </div>
-
                 ))}
-
             </div>
-
         </section>
     );
 }

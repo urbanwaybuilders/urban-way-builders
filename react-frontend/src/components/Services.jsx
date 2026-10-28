@@ -1,29 +1,28 @@
-
 import { useEffect, useState } from "react";
 
 const services = [
     {
         title: "Residential Construction",
         description:
-            "Construction of houses and residential properties based on your requirements.",
+            "Residential construction for new homes and houses, planned around your requirements, design preferences and available space.",
         image: "/images/residential-construction.png",
     },
     {
         title: "Commercial Construction",
         description:
-            "Construction solutions for commercial buildings and business spaces.",
+            "Construction solutions for commercial buildings, offices and business spaces with a focus on practical layouts and quality workmanship.",
         image: "/images/commercial-construction.png",
     },
     {
         title: "Building Renovation",
         description:
-            "Renovation and improvement of existing buildings and spaces.",
+            "Building renovation and improvement services to refresh existing properties, improve functionality and make better use of space.",
         image: "/images/building-renovation.png",
     },
     {
         title: "Construction Consultation",
         description:
-            "Guidance and consultation for your construction requirements.",
+            "Discuss your construction plans, project requirements and design ideas to help you take the next step with greater clarity.",
         image: "/images/construction-consultation.png",
     },
 ];
@@ -67,8 +66,11 @@ function Services() {
     return (
         <section className="services" id="services">
             <div className="section-title">
-                <h2>Our Services</h2>
-                <p>Complete construction solutions for your needs.</p>
+                <h2>Construction Services</h2>
+                <p>
+                    Residential, commercial and renovation solutions
+                    tailored to your construction requirements.
+                </p>
             </div>
 
             <div className="services-slider-wrapper">
