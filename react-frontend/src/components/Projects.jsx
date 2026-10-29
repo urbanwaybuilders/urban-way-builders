@@ -2,6 +2,30 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 const projects = [
+        {
+        id: "commercial",
+        name: "Commercial Building",
+        location: "Bangalore",
+        type: "Commercial",
+        status: "Completed",
+        image: "/projects/commercial/commercial.jpg",
+    },   
+    {
+        id: "Renovation",
+        name: "Renovation Building",
+        location: "Bilgi",
+        type: "Renovation",
+        status: "Completed",
+        image: "/projects/Renovation/Renovation.jpeg",
+    },
+      {
+        id: "Layout Develpment",
+        name: "Layout Develpment",
+        location: "Vijayapur",
+        type: "Layout",
+        status: "Ongoing",
+        image: "/projects/Layout/Layout.jpeg",
+    },
     {
         id: "villa",
         name: "Modern Residential Villa",
@@ -10,14 +34,7 @@ const projects = [
         status: "Completed",
         image: "/projects/villa.jpg",
     },
-    {
-        id: "commercial",
-        name: "Commercial Building",
-        location: "Bangalore",
-        type: "Commercial",
-        status: "Completed",
-        image: "/projects/commercial.jpg",
-    },
+
     {
         id: "residential",
         name: "Residential Building",
@@ -26,14 +43,7 @@ const projects = [
         status: "Ongoing",
         image: "/projects/residential.jpg",
     },
-    {
-        id: "luxury-villa",
-        name: "Luxury Independent Villa",
-        location: "Mysore",
-        type: "Residential",
-        status: "Completed",
-        image: "/projects/luxury-villa.jpg",
-    },
+
 ];
 
 function getVisibleCount() {
