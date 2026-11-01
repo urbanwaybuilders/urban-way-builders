@@ -1,4 +1,3 @@
-
 import { useState } from 'react'
 import './Navbar.css'
 
@@ -36,15 +35,32 @@ function Navbar() {
           id="primary-navigation"
           className={`nav-links ${menuOpen ? 'nav-open' : ''}`}
         >
-          <li><a href="#home" onClick={closeMenu}>Home</a></li>
-          <li><a href="#about" onClick={closeMenu}>About</a></li>
-          <li><a href="#services" onClick={closeMenu}>Services</a></li>
-          <li><a href="#projects" onClick={closeMenu}>Projects</a></li>
-          <li><a href="#contact" onClick={closeMenu}>Contact</a></li>
+          <li>
+            <a href="#home" onClick={closeMenu}>Home</a>
+          </li>
+
+          <li>
+            <a href="#about" onClick={closeMenu}>About</a>
+          </li>
+
+          <li>
+            <a href="#services" onClick={closeMenu}>Services</a>
+          </li>
+
+          <li>
+            <a href="#projects" onClick={closeMenu}>Projects</a>
+          </li>
+
+          <li>
+            <a href="#contact" onClick={closeMenu}>Contact</a>
+          </li>
+
           <li>
             <a
-              href="/nexgen-cadd"
+              href="https://nexgencadd.urbanwaybuilders.in/"
               className="nav-admin-link"
+              target="_blank"
+              rel="noopener noreferrer"
               onClick={closeMenu}
             >
               NexGen CADD

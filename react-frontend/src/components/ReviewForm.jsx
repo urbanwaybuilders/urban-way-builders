@@ -26,28 +26,34 @@ function ReviewForm({ isOpen, onClose }) {
         setSubmitting(true);
 
         try {
+            const payload = new URLSearchParams({
+                action: "review",
+                name: name.trim(),
+                rating: String(rating),
+                review: review.trim()
+            });
+
             await fetch(SCRIPT_URL, {
                 method: "POST",
                 mode: "no-cors",
-                headers: {
-                    "Content-Type": "text/plain;charset=utf-8"
-                },
-                body: JSON.stringify({
-                    action: "review",
-                    name: name.trim(),
-                    rating,
-                    review: review.trim()
-                })
+                body: payload
             });
 
             setStatus(
-                "Thank you! Your review has been submitted."
+                "Thank you! Your review has been submitted for approval."
             );
+
             setName("");
             setRating(5);
             setReview("");
-        } catch {
-            setStatus("Unable to submit your review. Please try again.");
+
+        } catch (error) {
+            console.error("Review submission failed:", error);
+
+            setStatus(
+                "Unable to submit your review. Please try again."
+            );
+
         } finally {
             setSubmitting(false);
         }
@@ -75,28 +81,42 @@ function ReviewForm({ isOpen, onClose }) {
                 </button>
 
                 <h2 id="review-modal-title">Write a Review</h2>
+
                 <p className="review-modal-description">
                     Share your experience with Urban Way Builders.
                 </p>
 
-                <form onSubmit={handleSubmit} className="review-form">
-                    <label htmlFor="review-name">Your Name</label>
+                <form
+                    onSubmit={handleSubmit}
+                    className="review-form"
+                >
+                    <label htmlFor="review-name">
+                        Your Name
+                    </label>
+
                     <input
                         id="review-name"
                         value={name}
-                        onChange={(event) => setName(event.target.value)}
+                        onChange={(event) =>
+                            setName(event.target.value)
+                        }
                         placeholder="Enter your name"
                         maxLength={100}
                         required
                     />
 
                     <label>Rate Your Experience</label>
+
                     <div className="review-rating">
                         {[1, 2, 3, 4, 5].map((star) => (
                             <button
                                 key={star}
                                 type="button"
-                                className={star <= rating ? "star selected" : "star"}
+                                className={
+                                    star <= rating
+                                        ? "star selected"
+                                        : "star"
+                                }
                                 onClick={() => setRating(star)}
                                 aria-label={`${star} star${star > 1 ? "s" : ""}`}
                                 aria-pressed={rating === star}
@@ -106,11 +126,16 @@ function ReviewForm({ isOpen, onClose }) {
                         ))}
                     </div>
 
-                    <label htmlFor="review-message">Your Review</label>
+                    <label htmlFor="review-message">
+                        Your Review
+                    </label>
+
                     <textarea
                         id="review-message"
                         value={review}
-                        onChange={(event) => setReview(event.target.value)}
+                        onChange={(event) =>
+                            setReview(event.target.value)
+                        }
                         placeholder="Tell us about your experience..."
                         rows={4}
                         maxLength={1500}
@@ -122,15 +147,20 @@ function ReviewForm({ isOpen, onClose }) {
                         className="review-submit-button"
                         disabled={submitting}
                     >
-                        {submitting ? "Submitting..." : "Submit Review"}
+                        {submitting
+                            ? "Submitting..."
+                            : "Submit Review"}
                     </button>
 
                     {status && (
-                        <p className="review-form-status" role="status">
+                        <p
+                            className="review-form-status"
+                            role="status"
+                            aria-live="polite"
+                        >
                             {status}
                         </p>
                     )}
-
                 </form>
             </div>
         </div>

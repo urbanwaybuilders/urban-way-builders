@@ -48,10 +48,13 @@
 .navbar .logo h2 {
   margin: 0;
   color: #f7bd42;
-  font-size: clamp(15px, 2vw, 27px);
-  font-weight: 800;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: clamp(17px, 1.8vw, 27px);
+  font-weight: 700;
+  letter-spacing: 0.3px;
   line-height: 1.2;
   white-space: nowrap;
+  text-transform: uppercase;
 }
 
 /* DESKTOP NAVIGATION */
@@ -86,16 +89,20 @@
 
 .nav-links .nav-admin-link {
   justify-content: center;
-  padding: 12px 16px;
-  border-radius: 7px;
-  background: #f7bd42;
-  color: #101a2c;
+  padding: 12px 20px;
+  border-radius: 12px;
+  background: linear-gradient(110deg, #7138f5 0%, #087cf5 100%);
+  color: #ffffff;
   font-weight: 700;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  box-shadow: 0 4px 14px rgba(80, 70, 245, 0.25);
 }
 
 .nav-links .nav-admin-link:hover {
-  background: #e9a91f;
-  color: #101a2c;
+  background: linear-gradient(110deg, #6028e8 0%, #0669dc 100%);
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(80, 70, 245, 0.35);
 }
 
 /* HAMBURGER BUTTON - HIDDEN ON DESKTOP */

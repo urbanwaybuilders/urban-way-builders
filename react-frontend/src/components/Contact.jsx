@@ -32,6 +32,7 @@ function Contact() {
 
     async function handleSubmit(event) {
         event.preventDefault();
+
         setFeedback({ message: "", type: "" });
 
         if (Object.values(formData).some((value) => !value.trim())) {
@@ -42,39 +43,38 @@ function Contact() {
             return;
         }
 
-        if (!GOOGLE_SCRIPT_URL.startsWith("https://script.google.com/")) {
-            setFeedback({
-                message: "The Google Sheets connection is not configured yet.",
-                type: "error",
-            });
-            return;
-        }
-
         setSubmitting(true);
 
         try {
+            // Send form-encoded data so Apps Script can read e.parameter.
+            const payload = new URLSearchParams({
+                action: "urbanWayBuilders",
+                ...formData,
+            });
+
             await fetch(GOOGLE_SCRIPT_URL, {
                 method: "POST",
                 mode: "no-cors",
-                headers: {
-                    "Content-Type": "text/plain;charset=utf-8",
-                },
-                body: JSON.stringify(formData),
+                body: payload,
             });
 
             setFormData(initialFormData);
+
             setFeedback({
                 message:
                     "Your enquiry request has been sent. Please contact us directly if you need to confirm receipt.",
                 type: "success",
             });
+
         } catch (error) {
+            console.error("Enquiry submission failed:", error);
+
             setFeedback({
                 message:
                     "Unable to send your enquiry. Please try again later.",
                 type: "error",
             });
-            console.error("Enquiry submission failed:", error);
+
         } finally {
             setSubmitting(false);
         }
@@ -131,6 +131,7 @@ function Contact() {
                     <label htmlFor="contact-project-type">
                         Project Type
                     </label>
+
                     <select
                         id="contact-project-type"
                         name="projectType"
@@ -152,6 +153,7 @@ function Contact() {
                     <label htmlFor="contact-location">
                         Project Location
                     </label>
+
                     <input
                         id="contact-location"
                         type="text"
@@ -166,6 +168,7 @@ function Contact() {
                     <label htmlFor="contact-message">
                         Tell Us About Your Project
                     </label>
+
                     <textarea
                         id="contact-message"
                         name="message"
@@ -192,7 +195,9 @@ function Contact() {
                     )}
 
                     <button type="submit" disabled={submitting}>
-                        {submitting ? "Sending..." : "Send Enquiry"}
+                        {submitting
+                            ? "Sending..."
+                            : "Book a Slot For Quick Consultation"}
                     </button>
                 </form>
             </div>
