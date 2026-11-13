@@ -1,0 +1,434 @@
+
+/* =========================================
+   URBAN WAY BUILDERS - NAVBAR
+   Powder Blue + Lavender + Sunset Peach
+========================================= */
+
+
+/* =========================================
+   FIXED HEADER
+========================================= */
+
+.site-header {
+  width: 100%;
+  height: 82px;
+  max-width: 100%;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+
+  z-index: 9999;
+
+  background: rgba(233, 232, 248, 0.97);
+
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+
+  border-bottom: 1px solid rgba(245, 182, 158, 0.8);
+
+  box-shadow: 0 5px 20px rgba(32, 38, 58, 0.07);
+}
+
+
+/* =========================================
+   NAVBAR LAYOUT
+========================================= */
+
+.navbar {
+  height: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 20px;
+  min-width: 0;
+}
+
+
+/* =========================================
+   BRAND / LOGO
+========================================= */
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  color: #20263A;
+  text-decoration: none;
+
+  flex-shrink: 0;
+  min-width: 0;
+}
+
+.brand-logo {
+  width: 48px;
+  height: 48px;
+
+  display: block;
+  flex-shrink: 0;
+
+  object-fit: contain;
+  object-position: center;
+
+  border-radius: 5px;
+
+  filter: brightness(0) saturate(100%)
+    invert(12%) sepia(17%) saturate(1630%)
+    hue-rotate(193deg) brightness(92%) contrast(91%);
+}
+
+.brand-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  min-width: 0;
+}
+
+.brand strong {
+  display: block;
+
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 19px;
+  font-weight: 700;
+
+  letter-spacing: -0.5px;
+  line-height: 1.2;
+
+  color: #20263A;
+}
+
+.brand small {
+  display: block;
+
+  color: #626B80;
+
+  font-size: 9px;
+  font-weight: 600;
+
+  letter-spacing: 2px;
+
+  margin-top: 4px;
+}
+
+
+/* =========================================
+   NAVIGATION LINKS
+========================================= */
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+/* Normal navigation links only */
+
+.nav-links > a:not(.nav-cta):not(.nexgen-nav-button) {
+  position: relative;
+
+  font-size: 13px;
+  font-weight: 500;
+
+  color: #20263A;
+
+  text-decoration: none;
+
+  transition: color 0.25s ease;
+}
+
+/* Navigation underline */
+
+.nav-links > a:not(.nav-cta):not(.nexgen-nav-button)::after {
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+  bottom: -6px;
+
+  width: 0;
+  height: 2px;
+
+  background: #F5B69E;
+
+  border-radius: 5px;
+
+  transition: width 0.25s ease;
+}
+
+.nav-links > a:not(.nav-cta):not(.nexgen-nav-button):hover {
+  color: #A85F49;
+}
+
+.nav-links > a:not(.nav-cta):not(.nexgen-nav-button):hover::after {
+  width: 100%;
+}
+
+
+/* =========================================
+   NEXGEN CADD BUTTON
+   Purple to Blue Gradient
+========================================= */
+
+.nexgen-nav-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  padding: 13px 22px;
+
+  border: none;
+  border-radius: 14px;
+
+  background: linear-gradient(
+    110deg,
+    #8038F5 0%,
+    #176FF2 100%
+  );
+
+  color: #FFFFFF !important;
+
+  font-size: 14px;
+  font-weight: 700;
+
+  text-decoration: none !important;
+  white-space: nowrap;
+
+  box-shadow: 0 7px 20px rgba(72, 75, 230, 0.22);
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    filter 0.25s ease;
+}
+
+/* Prevent normal navbar underline */
+
+.nexgen-nav-button::after {
+  display: none !important;
+}
+
+.nexgen-nav-button:hover {
+  color: #FFFFFF !important;
+
+  transform: translateY(-2px);
+
+  filter: brightness(1.08);
+
+  box-shadow: 0 10px 25px rgba(72, 75, 230, 0.32);
+}
+
+.nexgen-nav-button svg {
+  flex-shrink: 0;
+}
+
+
+/* =========================================
+   GET A QUOTE BUTTON
+========================================= */
+
+.nav-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+
+  padding: 13px 21px;
+
+  border: 1px solid #F5B69E;
+  border-radius: 12px;
+
+  background: #F5B69E;
+  color: #20263A;
+
+  text-decoration: none;
+  white-space: nowrap;
+
+  font-size: 13px;
+  font-weight: 700;
+
+  box-shadow: 0 6px 18px rgba(32, 38, 58, 0.08);
+
+  transition:
+    background 0.25s ease,
+    color 0.25s ease,
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.nav-cta:hover {
+  background: #8DB9F0;
+  color: #20263A;
+
+  transform: translateY(-2px);
+
+  box-shadow: 0 9px 22px rgba(32, 38, 58, 0.14);
+}
+
+
+/* =========================================
+   MOBILE MENU BUTTON
+========================================= */
+
+.mobile-menu {
+  display: none;
+
+  align-items: center;
+  justify-content: center;
+
+  background: transparent;
+  color: #20263A;
+
+  border: 1px solid #F5B69E;
+  border-radius: 9px;
+
+  padding: 8px;
+
+  cursor: pointer;
+
+  transition: all 0.25s ease;
+}
+
+.mobile-menu:hover {
+  background: #F5B69E;
+}
+
+
+/* =========================================
+   REDUCE NAVBAR SIDE SPACING
+========================================= */
+
+.site-header .navbar.container {
+  width: 100%;
+  max-width: 100%;
+
+  padding-left: 15px;
+  padding-right: 30px;
+
+  margin-left: 0;
+  margin-right: 0;
+
+  box-sizing: border-box;
+}
+
+
+/* =========================================
+   TABLET AND MOBILE
+========================================= */
+
+@media (max-width: 800px) {
+
+  .site-header {
+    height: 72px;
+  }
+
+  .brand-logo {
+    width: 43px;
+    height: 43px;
+  }
+
+  .brand strong {
+    font-size: 17px;
+  }
+
+  .mobile-menu {
+    display: flex;
+  }
+
+  /* Mobile navigation panel */
+
+  .nav-links {
+    display: none;
+
+    position: absolute;
+
+    top: 72px;
+    left: 0;
+    right: 0;
+
+    padding: 22px;
+
+    background: #E9E8F8;
+
+    border-bottom: 2px solid #F5B69E;
+
+    box-shadow: 0 12px 25px rgba(32, 38, 58, 0.12);
+
+    flex-direction: column;
+    align-items: stretch;
+
+    gap: 18px;
+
+    max-height: calc(100vh - 72px);
+    overflow-y: auto;
+  }
+
+  .nav-links.is-open {
+    display: flex;
+  }
+
+  .nav-links > a:not(.nav-cta):not(.nexgen-nav-button) {
+    font-size: 14px;
+    padding: 7px 0;
+  }
+
+  /* NexGen button on mobile */
+
+  .nexgen-nav-button {
+    width: 100%;
+    box-sizing: border-box;
+
+    justify-content: center;
+
+    padding: 12px 18px;
+    font-size: 13px;
+
+    border-radius: 12px;
+  }
+
+  /* Quote button on mobile */
+
+  .nav-cta {
+    width: 100%;
+    box-sizing: border-box;
+
+    justify-content: center;
+  }
+}
+
+
+/* =========================================
+   SMALL MOBILE
+========================================= */
+
+@media (max-width: 380px) {
+
+  .navbar {
+    gap: 8px;
+  }
+
+  .brand {
+    gap: 7px;
+  }
+
+  .brand-logo {
+    width: 37px;
+    height: 37px;
+  }
+
+  .brand strong {
+    font-size: 15px;
+  }
+
+  .brand small {
+    font-size: 8px;
+    letter-spacing: 1.3px;
+  }
+
+}

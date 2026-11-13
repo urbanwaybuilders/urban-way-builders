@@ -1,0 +1,153 @@
+
+/* =========================================
+   REUSABLE CAROUSEL
+   Navigation positioned below the cards
+========================================= */
+
+.carousel-shell {
+  position: relative;
+  width: 100%;
+  min-width: 0;
+}
+
+/* =========================================
+   SCROLLABLE TRACK
+========================================= */
+
+.carousel-track {
+  display: flex;
+  align-items: stretch;
+
+  width: 100%;
+  min-width: 0;
+
+  gap: 18px;
+
+  overflow-x: auto;
+  overflow-y: hidden;
+
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.carousel-track::-webkit-scrollbar {
+  display: none;
+}
+
+/* THREE CARDS ON DESKTOP */
+
+.carousel-slide {
+  flex: 0 0 calc((100% - 36px) / 3);
+
+  min-width: 0;
+
+  scroll-snap-align: start;
+}
+
+/* =========================================
+   NAVIGATION ROW
+========================================= */
+
+.carousel-navigation {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 15px;
+
+  margin-top: 20px;
+}
+
+/* NAVIGATION TEXT */
+
+.carousel-navigation-label {
+  color: #53627B;
+  font-size: 12px;
+}
+
+/* BUTTON GROUP */
+
+.carousel-navigation-buttons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* INDIVIDUAL BUTTON */
+
+.carousel-navigation-buttons button {
+  width: 43px;
+  height: 43px;
+
+  flex: 0 0 43px;
+
+  display: grid;
+  place-items: center;
+
+  border: 1px solid #F5B69E;
+  border-radius: 50%;
+
+  background: #E9E8F8;
+  color: #202B43;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.carousel-navigation-buttons button:hover {
+  background: #F5B69E;
+  transform: translateY(-2px);
+}
+
+.carousel-navigation-buttons button:focus-visible {
+  outline: 2px solid #202B43;
+  outline-offset: 3px;
+}
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 900px) {
+  .carousel-slide {
+    flex-basis: calc((100% - 18px) / 2);
+  }
+
+  .carousel-track {
+    gap: 18px;
+  }
+}
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 600px) {
+  .carousel-slide {
+    flex-basis: 100%;
+  }
+
+  .carousel-track {
+    gap: 13px;
+  }
+
+  .carousel-navigation {
+    margin-top: 15px;
+  }
+
+  .carousel-navigation-buttons {
+    gap: 8px;
+  }
+
+  .carousel-navigation-buttons button {
+    width: 40px;
+    height: 40px;
+    flex-basis: 40px;
+  }
+}

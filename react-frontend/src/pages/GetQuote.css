@@ -1,0 +1,84 @@
+/* Project enquiry page */
+.get-quote-page {
+  min-height: 70vh;
+  padding: 75px 0 90px;
+  background: #8DB9F0;
+  color: #202B43;
+}
+
+.get-quote-layout {
+  display: grid;
+  grid-template-columns: .9fr 1.1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.get-quote-intro h1 {
+  margin: 18px 0;
+  color: #202B43;
+  font: 700 clamp(40px, 5vw, 62px)/1.08 "Space Grotesk", sans-serif;
+  letter-spacing: -2px;
+}
+
+.get-quote-intro h1 em {
+  display: block;
+  color: #A85F49;
+  font-style: normal;
+}
+
+.get-quote-intro > p {
+  max-width: 440px;
+  color: #53627B;
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.quote-note {
+  display: grid;
+  gap: 7px;
+  margin-top: 30px;
+  padding: 19px;
+  border: 1px solid #F5B69E;
+  border-left: 4px solid #F5B69E;
+  border-radius: 12px;
+  background: #E9E8F8;
+}
+
+.quote-note b {
+  color: #202B43;
+  font: 600 14px "Space Grotesk", sans-serif;
+}
+
+.quote-note span,
+.get-quote-subtitle {
+  color: #53627B;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.get-quote-form-wrap h2 {
+  margin: 0 0 7px;
+  color: #202B43;
+  font: 600 25px "Space Grotesk", sans-serif;
+}
+
+.get-quote-subtitle {
+  margin: 0 0 18px;
+}
+
+@media (max-width: 800px) {
+  .get-quote-layout {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+}
+
+@media (max-width: 600px) {
+  .get-quote-page {
+    padding: 48px 0 60px;
+  }
+
+  .get-quote-intro h1 {
+    font-size: clamp(36px, 10vw, 48px);
+  }
+}

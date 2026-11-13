@@ -1,0 +1,409 @@
+/* Urban Way Builders brand theme: Powder Blue, Lavender and Sunset Peach */
+:root {
+  color-scheme: light;
+  --uwb-blue: #8DB9F0;
+  --uwb-lavender: #E9E8F8;
+  --uwb-peach: #F5B69E;
+  --uwb-navy: #202B43;
+  --uwb-ink: #26334B;
+  --uwb-muted: #53627B;
+  --uwb-line: rgba(32, 43, 67, 0.18);
+  color: var(--uwb-ink);
+  background: var(--uwb-blue);
+}
+
+html,
+body,
+#root {
+  background: var(--uwb-blue);
+  color: var(--uwb-ink);
+}
+
+::selection {
+  background: var(--uwb-peach);
+  color: var(--uwb-navy);
+}
+
+/* Section backgrounds */
+.section-pad {
+  color: var(--uwb-ink);
+}
+
+.about-section,
+.process-section,
+.projects-section,
+.contact-section,
+.get-quote-page {
+  background: var(--uwb-blue) !important;
+  color: var(--uwb-ink);
+}
+
+.projects-section,
+.contact-section {
+  background: var(--uwb-lavender) !important;
+}
+
+/* Section headings and body copy */
+.section-heading h2,
+.hero-copy h1,
+.get-quote-intro h1,
+.get-quote-form-wrap h2,
+.process-card h3,
+.footer-brand,
+.nav-brand,
+.about-copy h3 {
+  color: var(--uwb-navy);
+}
+
+.section-heading p,
+.hero-lead,
+.about-copy p,
+.benefit-card p,
+.process-card p,
+.get-quote-intro > p,
+.get-quote-subtitle,
+.quote-note span {
+  color: var(--uwb-muted);
+}
+
+.eyebrow,
+.section-heading > span,
+.detail-eyebrow,
+.project-overlay span,
+.text-link,
+.about-image-label span {
+  color: #A85F49;
+}
+
+/* Navigation */
+.navbar,
+.site-header,
+header.navbar {
+  background: rgba(233, 232, 248, 0.97) !important;
+  border-bottom: 1px solid var(--uwb-line);
+  box-shadow: 0 8px 28px rgba(32, 43, 67, 0.09);
+  backdrop-filter: blur(16px);
+}
+
+.nav-links {
+  background: transparent;
+  border-color: var(--uwb-line);
+}
+
+.nav-links a,
+.nav-link,
+.nav-brand,
+.navbar a {
+  color: var(--uwb-navy);
+}
+
+.nav-links a:hover,
+.nav-links a.active,
+.nav-link:hover {
+  color: #A85F49;
+}
+
+.nav-cta,
+.nav-uwb,
+.button-primary,
+.form-submit,
+.primary-button {
+  background: var(--uwb-peach) !important;
+  color: var(--uwb-navy) !important;
+  border: 1px solid rgba(168, 95, 73, 0.25);
+  box-shadow: 0 8px 22px rgba(168, 95, 73, 0.16);
+}
+
+.nav-cta:hover,
+.nav-uwb:hover,
+.button-primary:hover,
+.form-submit:hover,
+.primary-button:hover {
+  background: #E99F84 !important;
+  color: var(--uwb-navy) !important;
+}
+
+.button-outline {
+  background: rgba(233, 232, 248, 0.85);
+  color: var(--uwb-navy);
+  border: 1px solid rgba(32, 43, 67, 0.3);
+}
+
+/* Hero */
+.hero-section {
+  background: var(--uwb-blue);
+  color: var(--uwb-navy);
+}
+
+.hero-shade {
+  background:
+    linear-gradient(
+      90deg,
+      rgba(141, 185, 240, 0.94) 0%,
+      rgba(141, 185, 240, 0.82) 30%,
+      rgba(141, 185, 240, 0.42) 57%,
+      rgba(32, 43, 67, 0.05) 100%
+    ),
+    linear-gradient(0deg, rgba(233, 232, 248, 0.7), transparent 48%);
+}
+
+.hero-copy h1 {
+  text-shadow: 0 1px 10px rgba(255, 255, 255, 0.16);
+}
+
+.hero-lead {
+  color: #34445F;
+}
+
+.hero-design-tag,
+.hero-stats {
+  background: rgba(233, 232, 248, 0.94);
+  color: var(--uwb-navy);
+  border: 1px solid var(--uwb-peach);
+  box-shadow: 0 14px 34px rgba(32, 43, 67, 0.16);
+}
+
+.hero-stat {
+  border-color: var(--uwb-line);
+}
+
+.hero-stat strong,
+.hero-stat b,
+.hero-stat span {
+  color: var(--uwb-navy);
+}
+
+.hero-stat svg,
+.hero-design-tag span {
+  color: #A85F49;
+}
+
+/* Feature cards and process cards */
+.benefit-card,
+.process-card,
+.contact-info-card,
+.contact-static,
+.quote-note {
+  background: rgba(233, 232, 248, 0.97);
+  color: var(--uwb-ink);
+  border: 1px solid rgba(245, 182, 158, 0.9);
+  box-shadow: 0 12px 30px rgba(32, 43, 67, 0.09);
+}
+
+.benefit-card:hover {
+  border-color: #D9876D;
+  box-shadow: 0 17px 36px rgba(32, 43, 67, 0.15);
+}
+
+.benefit-icon,
+.process-points > div > span,
+.contact-icon {
+  background: var(--uwb-peach);
+  color: var(--uwb-navy);
+}
+
+/* Project gallery */
+.project-item {
+  border: 3px solid var(--uwb-peach);
+  border-radius: 18px;
+  box-shadow: 0 14px 34px rgba(32, 43, 67, 0.17);
+}
+
+.project-item::after {
+  background: linear-gradient(transparent, rgba(32, 43, 67, 0.82));
+}
+
+.project-overlay b {
+  color: #FFFFFF;
+}
+
+.project-filters button,
+.project-expand,
+.carousel-arrow,
+.carousel-btn,
+.slider-arrow {
+  background: var(--uwb-lavender);
+  color: var(--uwb-navy);
+  border: 1px solid var(--uwb-peach);
+}
+
+.project-filters button.active {
+  background: var(--uwb-peach);
+  color: var(--uwb-navy);
+  border-color: var(--uwb-peach);
+}
+
+/* Image frames */
+.about-image,
+.project-item,
+.contact-panel {
+  border: 2px solid var(--uwb-peach);
+  border-radius: 18px;
+  box-shadow: 0 14px 34px rgba(32, 43, 67, 0.14);
+}
+
+.about-image img {
+  filter: brightness(0.96) saturate(0.96);
+}
+
+.about-image::after {
+  background: linear-gradient(0deg, rgba(32, 43, 67, 0.55), transparent 65%);
+}
+
+.about-image-label b,
+.project-overlay b {
+  color: #FFFFFF;
+}
+
+/* Process section */
+.process-section {
+  background: var(--uwb-blue);
+}
+
+.process-card {
+  background: var(--uwb-lavender);
+  border: 1px solid var(--uwb-peach);
+}
+
+.process-card > small,
+.process-card h3 em {
+  color: #A85F49;
+}
+
+.process-bars i {
+  background: linear-gradient(var(--uwb-peach), var(--uwb-blue));
+}
+
+/* Contact image panel: its image is rendered by an img element in Contact.jsx */
+.contact-panel {
+  background: var(--uwb-blue);
+}
+
+.contact-panel-content b,
+.contact-panel-content p {
+  color: #FFFFFF;
+}
+
+.contact-panel-button {
+  background: var(--uwb-peach);
+  color: var(--uwb-navy);
+}
+
+/* Project enquiry form */
+.project-enquiry-form {
+  background: var(--uwb-lavender);
+  border: 2px solid var(--uwb-peach);
+  border-radius: 18px;
+  box-shadow: 0 16px 38px rgba(32, 43, 67, 0.12);
+}
+
+.project-enquiry-form label {
+  color: var(--uwb-navy);
+}
+
+.project-enquiry-form input,
+.project-enquiry-form select,
+.project-enquiry-form textarea {
+  background: #FFFFFF;
+  color: var(--uwb-navy);
+  border: 1px solid rgba(32, 43, 67, 0.24);
+}
+
+.project-enquiry-form input:focus,
+.project-enquiry-form select:focus,
+.project-enquiry-form textarea:focus {
+  border-color: #D9876D;
+  box-shadow: 0 0 0 3px rgba(245, 182, 158, 0.3);
+}
+
+.project-enquiry-form input::placeholder,
+.project-enquiry-form textarea::placeholder {
+  color: #7A8497;
+}
+
+.form-privacy {
+  color: var(--uwb-muted);
+}
+
+.form-alert.success {
+  color: #456B58;
+  background: #E3F1E8;
+  border-color: #9CC7AA;
+}
+
+/* Quote page */
+.get-quote-page {
+  background: var(--uwb-blue);
+}
+
+.quote-note {
+  border-left: 4px solid var(--uwb-peach);
+}
+
+/* Footer */
+.site-footer {
+  background: var(--uwb-navy);
+  color: var(--uwb-lavender);
+  border-top: 3px solid var(--uwb-peach);
+}
+
+.site-footer h2,
+.site-footer h3,
+.site-footer b,
+.site-footer strong {
+  color: #FFFFFF;
+}
+
+.site-footer p,
+.site-footer span,
+.site-footer li,
+.site-footer small,
+.site-footer a {
+  color: var(--uwb-lavender);
+}
+
+.site-footer a:hover {
+  color: var(--uwb-peach);
+}
+
+/* Keyboard focus */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 3px solid #A85F49;
+  outline-offset: 3px;
+}
+
+/* Mobile navigation and hero */
+.nav-toggle,
+.menu-toggle,
+.mobile-menu {
+  color: var(--uwb-navy);
+}
+
+@media (max-width: 800px) {
+  .nav-links {
+    background: var(--uwb-lavender);
+    border: 1px solid var(--uwb-peach);
+    box-shadow: 0 14px 30px rgba(32, 43, 67, 0.16);
+  }
+
+  .hero-shade {
+    background: linear-gradient(
+      180deg,
+      rgba(141, 185, 240, 0.88),
+      rgba(141, 185, 240, 0.66) 58%,
+      rgba(233, 232, 248, 0.76)
+    );
+  }
+
+  .hero-copy {
+    width: 100%;
+  }
+
+  .hero-stats {
+    background: rgba(233, 232, 248, 0.96);
+  }
+}

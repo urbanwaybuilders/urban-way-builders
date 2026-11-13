@@ -1,0 +1,389 @@
+/* ================================
+   HERO SECTION
+================================ */
+
+.hero-section {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    min-height: 690px;
+    padding: 95px 0 32px;
+    background: #8DB9F0;
+}
+
+/* Hero Background Image */
+.hero-background {
+    position: absolute;
+    z-index: -2;
+    inset: 0;
+    background-image: url("/images/Hero.png");
+    background-size: cover;
+    background-position: center 48%;
+    transform: scale(1.015);
+}
+
+/* Hero Image Overlay */
+.hero-shade {
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    background:
+        linear-gradient(
+            90deg,
+            rgba(32, 35, 31, 0.97) 0%,
+            rgba(23, 25, 22, 0.91) 29%,
+            rgba(23, 25, 22, 0.62) 49%,
+            rgba(23, 25, 22, 0.08) 78%
+        ),
+        linear-gradient(
+            0deg,
+            rgba(23, 25, 22, 0.90) 0%,
+            transparent 36%,
+            rgba(23, 25, 22, 0.18) 100%
+        );
+}
+
+/* Hero Inner Container */
+.hero-inner {
+    position: relative;
+    min-height: 560px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* Hero Content */
+.hero-copy {
+    position: relative;
+    z-index: 2;
+    width: min(610px, 55%);
+    padding-bottom: 95px;
+}
+
+/* Eyebrow Text */
+.eyebrow {
+    color: #A85F49;
+    font-size: 11px;
+    letter-spacing: 3px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.eyebrow span {
+    width: 22px;
+    height: 2px;
+    background: #A85F49;
+}
+
+.eyebrow i {
+    font-style: normal;
+    color: #E99F84;
+}
+
+/* Hero Main Heading */
+.hero-copy h1 {
+    font: 700 clamp(43px, 5.1vw, 68px) / 1.04 "Space Grotesk";
+    letter-spacing: -2.8px;
+    margin: 24px 0 22px;
+    max-width: 640px;
+    color: #202B43;
+}
+
+.hero-copy h1 em {
+    font-style: normal;
+    display: inline;
+    background: linear-gradient(90deg, #A85F49, #A85F49 80%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+/* Hero Description */
+.hero-lead {
+    color: #53627B;
+    max-width: 510px;
+    font-size: 15px;
+    line-height: 1.8;
+}
+
+/* Hero Action Buttons */
+.hero-actions {
+    display: flex;
+    gap: 13px;
+    flex-wrap: wrap;
+    margin-top: 30px;
+}
+
+/* Common Button Styling */
+.button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    text-decoration: none;
+    border-radius: 10px;
+    padding: 14px 20px;
+    font-size: 13px;
+    font-weight: 700;
+    transition: transform 0.25s, box-shadow 0.25s;
+}
+
+.button:hover {
+    transform: translateY(-3px);
+}
+
+/* Primary Button */
+.button-primary {
+    color: white;
+    background: linear-gradient(110deg, #F5B69E, #E99F84);
+    box-shadow: 0 12px 30px #F5B69E33;
+}
+
+/* Outline Button */
+.button-outline {
+    color: #E9E8F8;
+    border: 1px solid #53627B;
+    background: rgba(32, 35, 31, 0.82);
+    backdrop-filter: blur(8px);
+}
+
+/* ================================
+   HERO DESIGN TAG
+================================ */
+
+.hero-design-tag {
+    position: absolute;
+    z-index: 2;
+    right: 5%;
+    top: 23%;
+    padding: 13px 18px 13px 20px;
+    border: 1px solid #A85F49;
+    border-radius: 11px;
+    background: rgba(32, 35, 31, 0.92);
+    box-shadow: 0 12px 35px #0008;
+    color: #53627B;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.hero-design-tag span {
+    position: absolute;
+    left: 10px;
+    top: 13px;
+    bottom: 13px;
+    width: 2px;
+    background: #A85F49;
+}
+
+.hero-design-tag b {
+    padding-left: 0;
+    font-size: 15px;
+}
+
+/* ================================
+   HERO STATISTICS
+================================ */
+
+.hero-stats {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    padding: 19px 25px;
+    border: 1px solid #F5B69E;
+    border-radius: 18px;
+    background: rgba(32, 35, 31, 0.94);
+    backdrop-filter: blur(14px);
+    box-shadow: 0 15px 45px #0008;
+}
+
+/* Individual Statistics */
+.hero-stat {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    border-right: 1px solid #F5B69E;
+    padding: 0 12px;
+}
+
+.hero-stat:last-child {
+    border: 0;
+}
+
+/* Statistics Icons */
+.hero-stat > svg {
+    width: 32px;
+    height: 32px;
+    color: #A85F49;
+    stroke-width: 2.2;
+}
+
+.hero-stat:nth-child(2) > svg {
+    color: #E99F84;
+}
+
+.hero-stat:nth-child(3) > svg {
+    color: #E99F84;
+}
+
+/* Statistics Text */
+.hero-stat strong,
+.hero-stat span {
+    display: block;
+}
+
+.hero-stat strong {
+    font: 700 19px "Space Grotesk";
+    color: white;
+}
+
+.hero-stat span {
+    font-size: 11px;
+    color: #E9E8F8;
+    margin-top: 3px;
+}
+
+/* ================================
+   TABLET RESPONSIVE
+================================ */
+
+@media (max-width: 900px) {
+
+    .hero-section {
+        min-height: 680px;
+    }
+
+    .hero-copy {
+        width: min(620px, 72%);
+    }
+
+    .hero-background {
+        background-position: 58% center;
+    }
+
+    .hero-design-tag {
+        right: 3%;
+        top: 16%;
+    }
+
+}
+
+/* ================================
+   MOBILE RESPONSIVE
+================================ */
+
+@media (max-width: 650px) {
+
+    .hero-section {
+        min-height: 760px;
+        padding: 75px 0 24px;
+    }
+
+    .hero-background {
+        background-position: 62% center;
+    }
+
+    .hero-shade {
+        background:
+            linear-gradient(
+                90deg,
+                rgba(32, 35, 31, 0.95),
+                rgba(23, 25, 22, 0.72) 72%,
+                rgba(23, 25, 22, 0.30)
+            ),
+            linear-gradient(
+                0deg,
+                rgba(32, 35, 31, 0.96),
+                transparent 65%
+            );
+    }
+
+    .hero-inner {
+        min-height: 660px;
+        justify-content: flex-start;
+    }
+
+    .hero-copy {
+        width: 100%;
+        padding: 35px 0 210px;
+    }
+
+    .hero-copy h1 {
+        font-size: clamp(40px, 11vw, 56px);
+        letter-spacing: -2px;
+    }
+
+    .hero-design-tag {
+        top: auto;
+        bottom: 190px;
+        right: 5%;
+        font-size: 11px;
+    }
+
+    /* Mobile Statistics Grid */
+    .hero-stats {
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+        padding: 16px;
+    }
+
+    .hero-stat {
+        justify-content: flex-start;
+        border: 0;
+        padding: 0;
+    }
+
+    .hero-stat > svg {
+        width: 25px;
+        height: 25px;
+    }
+
+    .hero-stat strong {
+        font-size: 16px;
+    }
+
+    .hero-stat span {
+        font-size: 10px;
+    }
+
+}
+
+/* =========================================
+   TRANSPARENT EXPLORE PROJECTS BUTTON
+========================================= */
+
+.hero-actions .button-outline {
+    color: #202B43 !important;
+    background: rgba(233, 232, 248, 0.18) !important;
+    border: 1.5px solid rgba(32, 43, 67, 0.58);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    box-shadow: 0 6px 18px rgba(32, 43, 67, 0.08);
+}
+
+.hero-actions .button-outline:hover {
+    color: #202B43 !important;
+    background: rgba(233, 232, 248, 0.42) !important;
+    border-color: #F5B69E;
+    box-shadow: 0 9px 22px rgba(32, 43, 67, 0.13);
+}
+
+.hero-actions .button-outline svg {
+    flex-shrink: 0;
+}
+
+@media (max-width: 600px) {
+    .hero-actions {
+        gap: 10px;
+    }
+
+    .hero-actions .button {
+        width: fit-content;
+        max-width: 100%;
+    }
+}

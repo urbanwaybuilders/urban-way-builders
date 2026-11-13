@@ -1,0 +1,319 @@
+
+/* =========================================
+   URBAN WAY BUILDERS - FOOTER
+   Powder Blue | Lavender | Sunset Peach
+========================================= */
+
+/* MAIN FOOTER */
+.site-footer {
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+
+  background: #20263A;
+  color: #E9E8F8;
+
+  border-top: 2px solid #F5B69E;
+
+  /* Overall footer spacing */
+  padding: 30px 0 12px;
+}
+
+/* =========================================
+   FOOTER MAIN GRID
+========================================= */
+
+.footer-main {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1.3fr;
+
+  gap: 35px;
+
+  min-width: 0;
+  padding-bottom: 22px;
+}
+
+/* =========================================
+   BRAND SECTION
+========================================= */
+
+.footer-brand {
+  min-width: 0;
+}
+
+.footer-brand-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+
+  color: #FFFFFF;
+  text-decoration: none;
+}
+
+/* LOGO IMAGE */
+
+.footer-logo-image {
+  display: block;
+
+  width: 42px;
+  height: 42px;
+
+  flex-shrink: 0;
+
+  object-fit: contain;
+  object-position: center;
+
+  border-radius: 4px;
+}
+
+/* LOGO TEXT */
+
+.footer-logo-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.footer-logo-text strong {
+  display: block;
+
+  color: #FFFFFF;
+
+  font: 700 17px "Space Grotesk", sans-serif;
+  letter-spacing: -0.5px;
+  line-height: 1.2;
+}
+
+.footer-logo-text small {
+  display: block;
+
+  color: #F5B69E;
+
+  font-size: 9px;
+  letter-spacing: 2px;
+
+  margin-top: 3px;
+}
+
+/* DESCRIPTION */
+
+.footer-brand p {
+  max-width: 300px;
+
+  color: #E9E8F8;
+
+  font-size: 12px;
+  line-height: 1.6;
+
+  margin: 12px 0;
+}
+
+/* =========================================
+   FOOTER COLUMNS
+========================================= */
+
+.footer-main > div:not(:first-child) {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  gap: 9px;
+
+  min-width: 0;
+}
+
+/* COLUMN HEADINGS */
+
+.footer-main > div > b {
+  font: 600 14px "Space Grotesk", sans-serif;
+
+  color: #8DB9F0;
+
+  margin-bottom: 3px;
+}
+
+/* FOOTER LINKS */
+
+.footer-main a:not(.brand) {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  color: #E9E8F8;
+
+  text-decoration: none;
+  font-size: 12px;
+
+  transition: color 0.25s ease;
+}
+
+/* CONTACT TEXT */
+
+.footer-main span {
+  color: #E9E8F8;
+
+  font-size: 12px;
+  line-height: 1.5;
+
+  overflow-wrap: anywhere;
+}
+
+/* HOVER EFFECT */
+
+.footer-main a:hover {
+  color: #F5B69E;
+}
+
+/* =========================================
+   SOCIAL MEDIA LINKS
+========================================= */
+
+.social-links {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.social-links a {
+  width: 36px;
+  height: 36px;
+
+  display: grid !important;
+  place-items: center;
+
+  border: 1px solid rgba(141, 185, 240, 0.4);
+  border-radius: 10px;
+
+  color: #F5B69E !important;
+
+  transition: all 0.25s ease;
+}
+
+.social-links a:hover {
+  background: #8DB9F0;
+  border-color: #8DB9F0;
+
+  color: #20263A !important;
+
+  transform: translateY(-3px);
+}
+
+.social-links svg {
+  width: 17px;
+  height: 17px;
+}
+
+/* WHATSAPP */
+
+.social-links a[aria-label="WhatsApp"] {
+  color: #8DB9F0 !important;
+}
+
+.social-links a[aria-label="WhatsApp"]:hover {
+  background: #8DB9F0;
+  border-color: #8DB9F0;
+  color: #20263A !important;
+}
+
+/* =========================================
+   COPYRIGHT SECTION
+========================================= */
+
+.footer-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 15px;
+
+  border-top: 1px solid rgba(233, 232, 248, 0.2);
+
+  padding-top: 12px;
+  padding-bottom: 0;
+}
+
+.footer-bottom span {
+  color: #E9E8F8;
+
+  font-size: 10px;
+  line-height: 1.5;
+}
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 900px) {
+  .site-footer {
+    padding-top: 28px;
+  }
+
+  .footer-main {
+    grid-template-columns: 1.5fr 1fr 1fr;
+    gap: 24px;
+
+    padding-bottom: 20px;
+  }
+}
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 650px) {
+  .site-footer {
+    padding-top: 25px;
+    padding-bottom: 12px;
+  }
+
+  .footer-main {
+    grid-template-columns: 1fr 1fr;
+    gap: 22px 16px;
+
+    padding-bottom: 20px;
+  }
+
+  .footer-brand {
+    grid-column: 1 / -1;
+  }
+
+  .footer-logo-image {
+    width: 40px;
+    height: 40px;
+  }
+
+  .footer-logo-text strong {
+    font-size: 16px;
+  }
+
+  .footer-brand p {
+    max-width: 100%;
+    margin: 10px 0;
+  }
+
+  .footer-main > div:not(:first-child) {
+    gap: 8px;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+
+    gap: 7px;
+
+    padding-top: 12px;
+  }
+}
+
+/* SMALL MOBILE */
+
+@media (max-width: 380px) {
+  .footer-main {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .footer-brand {
+    grid-column: auto;
+  }
+}

@@ -1,0 +1,116 @@
+/* Global layout and typography */
+:root {
+  font-family: "DM Sans", sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  --line: rgba(32, 43, 67, 0.18);
+  --muted: #53627B;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  scroll-padding-top: 90px;
+}
+
+body {
+  width: 100%;
+  max-width: 100%;
+  min-width: 320px;
+  margin: 0;
+  overflow-x: hidden;
+}
+
+#root {
+  width: 100%;
+  max-width: 100%;
+  min-height: 100vh;
+  overflow-x: clip;
+  padding-top: 78px;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+.container {
+  width: calc(100% - 48px);
+  max-width: 1160px;
+  min-width: 0;
+  margin-inline: auto;
+}
+
+.section-pad {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  padding: 76px 0;
+}
+
+.container,
+.container > *,
+.section-heading,
+.section-heading > * {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.section-heading h2,
+.section-heading p {
+  overflow-wrap: break-word;
+  word-break: normal;
+}
+
+::selection {
+  background: #F5B69E;
+  color: #202B43;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 3px solid #A85F49;
+  outline-offset: 3px;
+}
+
+@media (max-width: 900px) {
+  .container {
+    width: calc(100% - 36px);
+  }
+
+  .section-pad {
+    padding: 54px 0;
+  }
+}
+
+@media (max-width: 800px) {
+  #root {
+    padding-top: 72px;
+  }
+}
+
+@media (max-width: 600px) {
+  .container {
+    width: calc(100% - 28px);
+  }
+
+  .section-pad {
+    padding: 42px 0;
+  }
+}

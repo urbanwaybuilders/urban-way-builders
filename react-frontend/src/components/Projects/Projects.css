@@ -1,0 +1,589 @@
+
+/* =========================================
+   URBAN WAY BUILDERS - PROJECTS
+========================================= */
+
+.projects-section {
+  width: 100%;
+  background: #E9E8F8;
+  color: #202B43;
+  overflow: hidden;
+}
+
+/* =========================================
+   PROJECT FILTERS
+========================================= */
+
+.project-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin-bottom: 25px;
+}
+
+.project-filters button {
+  padding: 10px 17px;
+  border: 1px solid #F5B69E;
+  border-radius: 30px;
+  background: transparent;
+  color: #202B43;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.project-filters button:hover,
+.project-filters button.active {
+  background: #F5B69E;
+  border-color: #F5B69E;
+  color: #202B43;
+}
+
+/* =========================================
+   PROJECT CAROUSEL
+========================================= */
+
+.projects-track {
+  display: flex;
+  gap: 18px;
+  width: 100%;
+  min-width: 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  padding: 4px 2px 12px;
+}
+
+.projects-track::-webkit-scrollbar {
+  display: none;
+}
+
+/* THREE CARDS ON DESKTOP */
+
+.project-card {
+  flex: 0 0 calc((100% - 36px) / 3);
+  min-width: 0;
+  scroll-snap-align: start;
+}
+
+/* =========================================
+   PROJECT CARD SIZE
+========================================= */
+
+.project-item {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 260px; /* EDIT MAIN CARD HEIGHT HERE */
+  overflow: hidden;
+  padding: 0;
+  border: 2px solid #F5B69E;
+  border-radius: 18px;
+  background: #202B43;
+  text-align: left;
+  cursor: pointer;
+}
+
+.project-item img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.4s ease;
+}
+
+.project-item:hover img {
+  transform: scale(1.03);
+}
+
+.project-item::after {
+  content: "";
+  position: absolute;
+  inset: 35% 0 0;
+  background: linear-gradient(
+    transparent,
+    rgba(32, 43, 67, 0.95)
+  );
+  pointer-events: none;
+}
+
+/* PROJECT NUMBER */
+
+.project-number {
+  position: absolute;
+  top: 15px;
+  left: 16px;
+  z-index: 2;
+  color: #FFFFFF;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+/* EXPAND ICON */
+
+.project-expand {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 2;
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  background: #E9E8F8;
+  color: #202B43;
+  border: 1px solid #F5B69E;
+  border-radius: 10px;
+}
+
+/* PROJECT TEXT */
+
+.project-overlay {
+  position: absolute;
+  z-index: 2;
+  left: 20px;
+  right: 15px;
+  bottom: 19px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.project-overlay span {
+  color: #F5B69E;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 7px;
+}
+
+.project-overlay b {
+  color: #FFFFFF;
+  font: 600 17px "Space Grotesk", sans-serif;
+}
+
+.project-overlay small {
+  color: #E9E8F8;
+  font-size: 11px;
+  margin-top: 6px;
+}
+
+/* =========================================
+   CAROUSEL NAVIGATION
+========================================= */
+
+.projects-navigation {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  padding: 10px 2px 0;
+}
+
+.projects-navigation-text {
+  color: #53627B;
+  font-size: 12px;
+}
+
+.projects-navigation-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.projects-navigation-buttons button {
+  width: 43px;
+  height: 43px;
+  display: grid;
+  place-items: center;
+  border: 1px solid #F5B69E;
+  border-radius: 50%;
+  background: #E9E8F8;
+  color: #202B43;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.projects-navigation-buttons button:hover {
+  background: #F5B69E;
+  transform: translateY(-2px);
+}
+
+/* =========================================
+   PROJECT POPUP
+========================================= */
+
+.project-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px;
+  background: rgba(19, 29, 48, 0.88);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  overflow-y: auto;
+}
+
+/* POPUP CARD */
+
+.project-modal-content {
+  position: relative;
+  width: 100%;
+  max-width: 850px; /* EDIT POPUP WIDTH HERE */
+  max-height: 90vh;
+  overflow-y: auto;
+  background: #E9E8F8;
+  border: 2px solid #F5B69E;
+  border-radius: 20px;
+  padding: 18px 22px;
+  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.3);
+}
+
+/* =========================================
+   POPUP HEADER
+========================================= */
+
+.project-modal-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+.project-modal-header span {
+  display: block;
+  color: #A85F49;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.project-modal-header h2 {
+  color: #202B43;
+  font: 700 25px "Space Grotesk", sans-serif;
+  margin: 0;
+}
+
+.project-modal-close {
+  flex: none;
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  border: 1px solid #F5B69E;
+  border-radius: 50%;
+  background: #F5B69E;
+  color: #202B43;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.project-modal-close:hover {
+  transform: rotate(90deg);
+}
+
+/* =========================================
+   IMAGE STAGE
+
+   ARROWS ARE OUTSIDE THE IMAGE BORDER
+========================================= */
+
+.project-image-stage {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 48px; /* SPACE RESERVED FOR ARROWS */
+}
+
+/* =========================================
+   IMAGE FRAME
+
+   IMAGE BORDER FITS THE ACTUAL IMAGE
+========================================= */
+
+.project-modal-image {
+  position: relative;
+  width: fit-content;
+  max-width: 100%;
+  height: auto;
+  max-height: 330px;
+  margin: 0 auto;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #202B43;
+  border: 1px solid #F5B69E;
+  border-radius: 14px;
+}
+
+/* COMPLETE IMAGE - NO CROPPING OR ZOOM */
+
+.project-modal-image > img {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 330px;
+  object-fit: contain;
+  object-position: center;
+}
+
+/* =========================================
+   IMAGE ARROWS OUTSIDE BORDER
+========================================= */
+
+.project-image-arrow {
+  position: absolute;
+  top: 50%;
+  z-index: 5;
+  transform: translateY(-50%);
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  border: 1px solid #F5B69E;
+  border-radius: 50%;
+  background: #E9E8F8;
+  color: #202B43;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.project-image-arrow:hover {
+  background: #F5B69E;
+  transform: translateY(-50%) scale(1.06);
+}
+
+.project-image-prev {
+  left: 0;
+}
+
+.project-image-next {
+  right: 0;
+}
+
+/* IMAGE COUNT */
+
+.project-image-count {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  z-index: 3;
+  padding: 7px 12px;
+  border-radius: 20px;
+  background: rgba(32, 43, 67, 0.85);
+  color: #FFFFFF;
+  font-size: 11px;
+}
+
+/* =========================================
+   PROJECT DESCRIPTION
+========================================= */
+
+.project-modal-description {
+  padding: 15px 2px 10px;
+}
+
+.project-modal-description h3 {
+  color: #202B43;
+  font: 600 17px "Space Grotesk", sans-serif;
+  margin: 0 0 8px;
+}
+
+.project-modal-description p {
+  color: #53627B;
+  font-size: 13px;
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* =========================================
+   IMAGE THUMBNAILS
+========================================= */
+
+.project-thumbnails {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  padding: 4px 2px 6px;
+  scrollbar-width: thin;
+}
+
+.project-thumbnails button {
+  flex: 0 0 90px;
+  height: 64px;
+  padding: 0;
+  overflow: hidden;
+  border: 2px solid transparent;
+  border-radius: 9px;
+  background: #202B43;
+  cursor: pointer;
+}
+
+.project-thumbnails button.active {
+  border-color: #F5B69E;
+}
+
+.project-thumbnails img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 900px) {
+
+  .project-card {
+    flex-basis: calc((100% - 18px) / 2);
+  }
+
+  .project-item {
+    height: 240px;
+  }
+
+  .project-modal-content {
+    max-width: 750px;
+  }
+
+  .project-modal-image,
+  .project-modal-image > img {
+    max-height: 290px;
+  }
+}
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 600px) {
+
+  .project-filters {
+    gap: 7px;
+    margin-bottom: 18px;
+  }
+
+  .project-filters button {
+    padding: 8px 12px;
+    font-size: 11px;
+  }
+
+  .projects-track {
+    gap: 13px;
+  }
+
+  .project-card {
+    flex-basis: 100%;
+  }
+
+  .project-item {
+    height: 225px;
+    border-radius: 15px;
+  }
+
+  .project-overlay {
+    left: 15px;
+    bottom: 16px;
+  }
+
+  .project-overlay b {
+    font-size: 15px;
+  }
+
+  .projects-navigation {
+    padding-top: 8px;
+  }
+
+  .projects-navigation-buttons button {
+    width: 40px;
+    height: 40px;
+  }
+
+  /* MOBILE POPUP */
+
+  .project-modal {
+    padding: 10px;
+  }
+
+  .project-modal-content {
+    padding: 13px;
+    border-radius: 15px;
+    max-height: 94vh;
+  }
+
+  .project-modal-header h2 {
+    font-size: 19px;
+  }
+
+  .project-image-stage {
+    padding: 0 37px;
+  }
+
+  .project-modal-image,
+  .project-modal-image > img {
+    max-height: 240px;
+  }
+
+  .project-image-arrow {
+    width: 32px;
+    height: 32px;
+  }
+
+  .project-modal-description {
+    padding-top: 13px;
+  }
+
+  .project-modal-description p {
+    font-size: 12px;
+  }
+
+  .project-thumbnails button {
+    flex-basis: 78px;
+    height: 58px;
+  }
+}
+
+/* =========================================
+   SMALL MOBILE
+========================================= */
+
+@media (max-width: 380px) {
+
+  .project-image-stage {
+    padding: 0 33px;
+  }
+
+  .project-modal-image,
+  .project-modal-image > img {
+    max-height: 210px;
+  }
+
+  .project-modal-header h2 {
+    font-size: 17px;
+  }
+
+  .project-modal-content {
+    padding: 11px;
+  }
+
+  .project-image-arrow {
+    width: 29px;
+    height: 29px;
+  }
+}
